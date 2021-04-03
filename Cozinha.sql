@@ -11,7 +11,7 @@ create table cozinha(
     horaFechamento int,
     pratoPrincipal varchar(30),
     numeroPratos int,
-    numeroCozinheiros int,
+    numeroFuncionarios int,
     tempoPreparo int,
     primary key (id)
 ) default charset = utf8;
@@ -31,20 +31,34 @@ create table funcionario(
 ) default charset = utf8;
 
 Insert into cozinha 
-(tipo, horaAbertura, horaFechamento, pratoPrincipal) 
-values ('Mineira', 13, 20, 'Feijoada');
+(tipo, horaAbertura, horaFechamento, pratoPrincipal, numeroPratos, numeroFuncionarios, tempoPreparo) 
+values ('Mineira', 14, 20, 'Feijoada', 5, 4, 30);
 
 Insert into cozinha 
-(tipo, horaAbertura, horaFechamento, pratoPrincipal) 
-values ('Chinesa', 10, 22, 'Yaksoba');
+(tipo, horaAbertura, horaFechamento, pratoPrincipal, numeroPratos, numeroFuncionarios, tempoPreparo) 
+values ('Chinesa', 10, 21, 'Yakissoba', 3, 3, 20);
 
 Insert into cozinha 
-(tipo, horaAbertura, horaFechamento, pratoPrincipal) 
-values ('Italiana', 12, 21, 'Pizza');
+(tipo, horaAbertura, horaFechamento, pratoPrincipal, numeroPratos, numeroFuncionarios, tempoPreparo) 
+values ('Italiana', 13, 22, 'Pizza', 6, 2, 40);
 
-Insert into cozinha 
-(tipo, horaAbertura, horaFechamento, pratoPrincipal) 
-values ('Chinesa', 10, 22, 'Yaksoba');
+Insert into cozinha
+(tipo, horaAbertura, horaFechamento, pratoPrincipal, numeroPratos, numeroFuncionarios, tempoPreparo) 
+values
+('Francesa', 12, 20, 'Escargot', 6, 7, 50),
+('Japonesa', 13, 20, 'Sushi', 10, 10, 10);
+
+Insert into ingrediente
+(nome, dataValidade)
+values 
+('Feijão', '2020-03-15'),
+('Arroz', '2021-03-15'),
+('Batata', '2021-03-15'),
+('Carne', '2021-08-13'),
+('Queijo', '2021-05-17'),
+('Macarrão', '2020-10-11'),
+('Champignon', '2021-07-25'),
+('Presunto', '2020-03-03');
 
 Insert into funcionario
 (nome, atividade)
@@ -83,23 +97,16 @@ Insert into funcionario
 values ("Adalberto", "Serviços Gerais");
 
 Insert into funcionario
-(id,nome, atividade)
+(nome, atividade)
 values ("Luiza", "Serviços Gerais");
-
-Delete from cozinha;
-
-Select * from cozinha;
 
 Select count(1)
 from cozinha;
 
-Select count(1)
+Select tipo
 from cozinha 
-where horaAbertura = 10;
+where horaFechamento = 20;
 
-Select tipo 
-from ingrediente join funcionario
-where ingrediente is null;
-
-Update cozinha set horaFechamento = 21
-where tipo = 'Mineira';
+Select *
+from ingrediente
+where dataValidade <= '2021-04-02';
